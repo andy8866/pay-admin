@@ -29,11 +29,6 @@ export default [
     component: './Welcome',
   },
   {
-    name: 'list.table-list',
-    path: '/list',
-    component: './TableList',
-  },
-  {
     name: 'app用户列表',
     path: '/appUserList',
     component: './AppUserList',

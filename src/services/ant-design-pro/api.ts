@@ -41,51 +41,20 @@ export async function getNotices(options?: { [key: string]: any }) {
   });
 }
 
-/** 获取App用户列表 POST /api/rule */
+/** 获取App用户列表*/
 export async function getAppUserList(
   params: {
   },
   options?: { [key: string]: any },
 ) {
-  return request<API.AppUserList>('/api/rule', {
+  return request<API.AppUserList>('/api/admin/app_user/list', {
     method: 'POST',
-    params: {
+    data: {
       'token':localStorage.getItem("token"),
+      'tenant_id':0,
+      'user_id':0,
       ...params,
     },
-    ...(options || {}),
-  });
-}
-
-/** 更新规则 PUT /api/rule */
-export async function updateRule(options?: { [key: string]: any }) {
-  return request<API.RuleListItem>('/api/rule', {
-    method: 'POST',
-    data:{
-      method: 'update',
-      ...(options || {}),
-    }
-  });
-}
-
-/** 新建规则 POST /api/rule */
-export async function addRule(options?: { [key: string]: any }) {
-  return request<API.RuleListItem>('/api/rule', {
-    method: 'POST',
-    data:{
-      method: 'post',
-      ...(options || {}),
-    }
-  });
-}
-
-/** 删除规则 DELETE /api/rule */
-export async function removeRule(options?: { [key: string]: any }) {
-  return request<Record<string, any>>('/api/rule', {
-    method: 'POST',
-    data:{
-      method: 'delete',
-      ...(options || {}),
-    }
+    ...(options || { }),
   });
 }
