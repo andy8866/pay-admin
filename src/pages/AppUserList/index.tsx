@@ -31,10 +31,6 @@ const AppUserList: React.FC = () => {
         headerTitle='App用户列表'
         actionRef={actionRef}
         rowKey="key"
-        params={{}}
-        search={{
-          labelWidth: 120,
-        }}
         request={getAppUserList}
         columns={columns}
       />

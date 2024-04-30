@@ -58,3 +58,28 @@ export async function getAppUserList(
     ...(options || { }),
   });
 }
+
+
+
+/** 获取资产列表*/
+export async function getAssetList(
+  params: {
+  },
+  options?: { [key: string]: any },
+) {
+
+  console.log(params)
+  params['search_user_id']=params['user_id']
+
+  return request<API.AppUserList>('/api/admin/asset/list', {
+    method: 'POST',
+    data: {
+      'token':localStorage.getItem("token"),
+      'tenant_id':0,
+      'user_id':0,
+      'search_user_id':0,
+      ...params,
+    },
+    ...(options || { }),
+  });
+}

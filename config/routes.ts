@@ -34,6 +34,11 @@ export default [
     component: './AppUserList',
   },
   {
+    name: '用户资产列表',
+    path: '/assetList',
+    component: './AssetList',
+  },
+  {
     path: '/',
     redirect: '/welcome',
   },

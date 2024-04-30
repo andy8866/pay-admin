@@ -48,6 +48,24 @@ declare namespace API {
     data?: AppUser[];
   };
 
+  type Asset = {
+    id?: string;
+    tenant_id?: string;
+    updated_at?: string;
+    created_at?: string;
+    user_id?: string;
+    coin_type?: number;
+    amount?: string;
+    freeze?: string;
+    address?: string;
+  };
+
+  type AssetList = {
+    status?: number;
+    msg?: string;
+    data?: AppUser[];
+  };
+
   type FakeCaptcha = {
     code?: number;
     status?: string;
