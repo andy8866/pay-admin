@@ -69,6 +69,7 @@ export async function getAssetList(
 ) {
 
   console.log(params)
+  // @ts-ignore
   params['search_user_id']=params['user_id']
 
   return request<API.AppUserList>('/api/admin/asset/list', {
