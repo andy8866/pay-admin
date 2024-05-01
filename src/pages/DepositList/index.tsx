@@ -1,9 +1,10 @@
-import {depositPuttingCoin, depositReceivedAudit, getDepositList} from '@/services/ant-design-pro/api';
+import {depositPuttingCoin, depositReceivedAudit, getDepositList} from '@/services/api';
 import type {ActionType, ProColumns} from '@ant-design/pro-components';
 import {PageContainer, ProTable,} from '@ant-design/pro-components';
 import React, {useRef, useState} from 'react';
 import {COIN_CNY, coin_precision, get_coin_str, rate_precision} from "@/coin";
-import {Modal, Popconfirm} from "antd";
+import {Modal} from "antd";
+import {DepositOrderVO, PageParamsVO} from "@/services/typings";
 
 
 export function get_deposit_status_str(status: number) {
@@ -28,15 +29,15 @@ const DepositList: React.FC = () => {
   const actionRef = useRef<ActionType>();
 
   const [open, setOpen] = useState(false);
-  const [selectRecord, setSelectRecord] = useState({});
+  const [selectRecord, setSelectRecord] = useState({} as DepositOrderVO);
 
-  function audit(record) {
+  function audit(record:DepositOrderVO) {
     setSelectRecord(record);
 
     setOpen(true);
   };
 
-  const columns: ProColumns<API.DepositOrder>[] = [
+  const columns: ProColumns<DepositOrderVO>[] = [
     {
       title: 'ID',
       dataIndex: 'id',
@@ -120,15 +121,20 @@ const DepositList: React.FC = () => {
   ];
 
   const handleOk = () => {
-    if (selectRecord.status==1){
+    if (selectRecord.status===1){
+      // @ts-ignore
       depositReceivedAudit({id:selectRecord.id})
     }
 
-    if (selectRecord.status==2){
+    if (selectRecord.status===2){
+      // @ts-ignore
       depositPuttingCoin({id:selectRecord.id})
     }
 
-    actionRef.current.reload();
+    setTimeout(()=>{
+      // @ts-ignore
+      actionRef.current.reload();
+    },1000)
 
     setOpen(false);
   };
@@ -141,7 +147,7 @@ const DepositList: React.FC = () => {
   return (
     <div>
       <PageContainer>
-        <ProTable<API.DepositOrder, API.PageParams>
+        <ProTable<DepositOrderVO, PageParamsVO>
           headerTitle='充值列表'
           actionRef={actionRef}
           rowKey="id"

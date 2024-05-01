@@ -1,11 +1,12 @@
 import {Footer} from '@/components';
-import {login} from '@/services/ant-design-pro/api';
+import {login} from '@/services/api';
 import {LockOutlined, UserOutlined,} from '@ant-design/icons';
 import {LoginForm, ProFormText,} from '@ant-design/pro-components';
-import {FormattedMessage, Helmet, history, useIntl} from '@umijs/max';
+import {FormattedMessage, Helmet, history} from '@umijs/max';
 import {Alert, message} from 'antd';
 import React, {useState} from 'react';
 import {createStyles} from 'antd-style';
+import {LoginParamsVO, LoginResultVO} from "@/services/typings";
 
 const useStyles = createStyles(({token}) => {
   return {
@@ -48,10 +49,10 @@ const LoginMessage: React.FC<{
 };
 
 const Login: React.FC = () => {
-  const [userLoginState, setUserLoginState] = useState<API.LoginResult>({} as API.LoginResult);
+  const [userLoginState, setUserLoginState] = useState<LoginResultVO>({} as LoginResultVO);
   const {styles} = useStyles();
 
-  const handleSubmit = async (values: API.LoginParams) => {
+  const handleSubmit = async (values:LoginParamsVO) => {
     try {
       // 登录
       const r = await login(values);
@@ -95,7 +96,7 @@ const Login: React.FC = () => {
           subTitle={""}
           actions={[]}
           onFinish={async (values) => {
-            await handleSubmit(values as API.LoginParams);
+            await handleSubmit(values as LoginParamsVO);
           }}
         >
           {status > 0 && <LoginMessage content={msg}/>}

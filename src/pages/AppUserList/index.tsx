@@ -1,12 +1,13 @@
-import {getAppUserList} from '@/services/ant-design-pro/api';
+import {getAppUserList} from '@/services/api';
 import type {ActionType, ProColumns} from '@ant-design/pro-components';
 import {PageContainer, ProTable,} from '@ant-design/pro-components';
 import React, {useRef} from 'react';
+import {AppUserVO, PageParamsVO} from "@/services/typings";
 
 const AppUserList: React.FC = () => {
   const actionRef = useRef<ActionType>();
 
-  const columns: ProColumns<API.AppUser>[] = [
+  const columns: ProColumns<AppUserVO>[] = [
     {
       title: 'ID',
       dataIndex: 'id',
@@ -27,7 +28,7 @@ const AppUserList: React.FC = () => {
 
   return (
     <PageContainer>
-      <ProTable<API.AppUser, API.PageParams>
+      <ProTable<AppUserVO, PageParamsVO>
         headerTitle='App用户列表'
         actionRef={actionRef}
         rowKey="key"

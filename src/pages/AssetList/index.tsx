@@ -1,13 +1,14 @@
-import {getAssetList} from '@/services/ant-design-pro/api';
+import {getAssetList} from '@/services/api';
 import type {ActionType, ProColumns} from '@ant-design/pro-components';
 import {PageContainer, ProTable,} from '@ant-design/pro-components';
 import React, {useRef} from 'react';
 import {coin_precision, get_coin_str} from "@/coin";
+import {AssetVO, PageParamsVO} from "@/services/typings";
 
 const AssetList: React.FC = () => {
   const actionRef = useRef<ActionType>();
 
-  const columns: ProColumns<API.Asset>[] = [
+  const columns: ProColumns<AssetVO>[] = [
     {
       title: 'ID',
       dataIndex: 'id',
@@ -54,7 +55,7 @@ const AssetList: React.FC = () => {
 
   return (
     <PageContainer>
-      <ProTable<API.Asset, API.PageParams>
+      <ProTable<AssetVO, PageParamsVO>
         headerTitle='用户资产列表'
         actionRef={actionRef}
         rowKey="id"
