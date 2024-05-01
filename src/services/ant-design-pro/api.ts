@@ -2,15 +2,6 @@
 /* eslint-disable */
 import { request } from '@umijs/max';
 
-/** 获取当前的用户 GET /api/currentUser */
-export async function currentUser(options?: { [key: string]: any }) {
-  return request<{
-    data: API.CurrentUser;
-  }>('/api/currentUser', {
-    method: 'GET',
-    ...(options || {}),
-  });
-}
 
 /** 退出登录接口 POST /api/login/outLogin */
 export async function outLogin(options?: { [key: string]: any }) {
@@ -33,13 +24,6 @@ export async function login(body: API.LoginParams, options?: { [key: string]: an
   });
 }
 
-/** 此处后端没有提供注释 GET /api/notices */
-export async function getNotices(options?: { [key: string]: any }) {
-  return request<API.NoticeIconList>('/api/notices', {
-    method: 'GET',
-    ...(options || {}),
-  });
-}
 
 /** 获取App用户列表*/
 export async function getAppUserList(
@@ -69,17 +53,86 @@ export async function getAssetList(
 ) {
 
   console.log(params)
-  // @ts-ignore
-  params['search_user_id']=params['user_id']
 
-  return request<API.AppUserList>('/api/admin/asset/list', {
+  let search_user_id=params['user_id']?params['user_id']:0;
+
+  return request<API.AssetList>('/api/admin/asset/list', {
     method: 'POST',
     data: {
       'token':localStorage.getItem("token"),
       'tenant_id':0,
       'user_id':0,
-      'search_user_id':0,
+      'search_user_id':search_user_id
+    },
+    ...(options || { }),
+  });
+}
+
+
+
+/** 获取充值列表*/
+export async function getDepositList(
+  params: {
+  },
+  options?: { [key: string]: any },
+) {
+
+  console.log(params)
+  // @ts-ignore
+  params['search_user_id']=params['user_id']
+
+  return request<API.DepositOrderList>('/api/admin/deposit/list', {
+    method: 'POST',
+    data: {
+      'token':localStorage.getItem("token"),
+      'tenant_id':0,
+      'user_id':0,
       ...params,
+    },
+    ...(options || { }),
+  });
+}
+
+/** 充值审核*/
+export async function depositReceivedAudit(
+  params: {
+  },
+  options?: { [key: string]: any },
+) {
+
+  console.log(params)
+
+  return request<API.DepositOrderList>('/api/admin/deposit/received_audit', {
+    method: 'POST',
+    data: {
+      'token':localStorage.getItem("token"),
+      'tenant_id':0,
+      'user_id':0,
+      'order_id':params['id'],
+      'remark':'审核已到账'
+    },
+    ...(options || { }),
+  });
+}
+
+/** 放币*/
+export async function depositPuttingCoin(
+  params: {
+  },
+  options?: { [key: string]: any },
+) {
+
+  console.log(params)
+
+  return request<API.DepositOrderList>('/api/admin/deposit/putting_coin', {
+    method: 'POST',
+    data: {
+      'token':localStorage.getItem("token"),
+      'tenant_id':0,
+      'user_id':0,
+      'order_id':params['id'],
+      'remark':'放币',
+      from_user_id:94,
     },
     ...(options || { }),
   });

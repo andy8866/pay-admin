@@ -39,6 +39,11 @@ export default [
     component: './AssetList',
   },
   {
+    name: '充值列表',
+    path: '/depositList',
+    component: './DepositList',
+  },
+  {
     path: '/',
     redirect: '/welcome',
   },

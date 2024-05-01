@@ -63,7 +63,34 @@ declare namespace API {
   type AssetList = {
     status?: number;
     msg?: string;
-    data?: AppUser[];
+    data?: Asset[];
+  };
+
+  type DepositOrder = {
+    id?: string;
+    tenant_id?: string;
+    updated_at?: string;
+    created_at?: string;
+    order_no?: string;
+    status?: number;
+    user_id?: string;
+    coin_type?: number;
+    coin_amount?: number;
+    legal_amount?: number;
+    coin_to_legal_rate?: number;
+    real_name?: string;
+    card_no?: string;
+    depositary_bank?: string;
+    bank_sn?: string;
+    user_pay_time?: string;
+    audit_time?: string;
+    putting_time?: string;
+  };
+
+  type DepositOrderList = {
+    status?: number;
+    msg?: string;
+    data?: DepositOrder[];
   };
 
   type FakeCaptcha = {
