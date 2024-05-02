@@ -123,9 +123,28 @@ export type WithdrawOrderVO = {
 };
 
 
-export type FakeCaptcha = {
-  code?: number;
-  status?: string;
+
+export type AdjustAssetListVO = {
+  status?: number;
+  msg?: string;
+  data?: AdjustAssetVO[];
+};
+
+
+export type AdjustAssetVO = {
+  id?: string;
+  tenant_id?: string;
+  updated_at?: string;
+  created_at?: string;
+  user_id?: string;
+  status?: number;
+  coin_type?: number;
+  amount?: number;
+  asset_trans_type?: number;
+  audit_time?: string;
+  opt_user_id?: string;
+  execute_time?: string;
+  from_user_id?: string;
 };
 
 export type LoginParamsVO = {
@@ -133,35 +152,3 @@ export type LoginParamsVO = {
   name?: string;
   password?: string;
 };
-
-export type ErrorResponse = {
-  /** 业务约定的错误码 */
-  errorCode: string;
-  /** 业务上的错误信息 */
-  errorMessage?: string;
-  /** 业务上的请求是否成功 */
-  success?: boolean;
-};
-
-export type NoticeIconList = {
-  data?: NoticeIconItem[];
-  /** 列表的内容总数 */
-  total?: number;
-  success?: boolean;
-};
-
-export type NoticeIconItemType = 'notification' | 'message' | 'event';
-
-export type NoticeIconItem = {
-  id?: string;
-  extra?: string;
-  key?: string;
-  read?: boolean;
-  avatar?: string;
-  title?: string;
-  status?: string;
-  datetime?: string;
-  description?: string;
-  type?: NoticeIconItemType;
-};
-

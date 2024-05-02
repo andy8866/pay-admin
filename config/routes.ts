@@ -49,6 +49,11 @@ export default [
     component: './WithdrawList',
   },
   {
+    name: '调账列表',
+    path: '/adjustAssetList',
+    component: './AdjustAssetList',
+  },
+  {
     path: '/',
     redirect: '/welcome',
   },

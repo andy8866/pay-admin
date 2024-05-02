@@ -1,7 +1,14 @@
 // @ts-ignore
 /* eslint-disable */
 import { request } from '@umijs/max';
-import {AppUserListVO, AssetListVO, DepositOrderListVO, LoginParamsVO, LoginResultVO} from "@/services/typings";
+import {
+  AdjustAssetListVO,
+  AppUserListVO,
+  AssetListVO,
+  DepositOrderListVO,
+  LoginParamsVO,
+  LoginResultVO
+} from "@/services/typings";
 
 
 /** 退出登录接口 POST /api/login/outLogin */
@@ -190,6 +197,8 @@ export async function withdrawAudit(
 }
 
 
+
+
 /** 提款已付款*/
 export async function withdrawAlreadPay(
   params: {
@@ -211,6 +220,86 @@ export async function withdrawAlreadPay(
       'bank_sn':"123",
 
       'remark':'已付款'
+    },
+    ...(options || { }),
+  });
+}
+
+/** list*/
+export async function getAdjustAssetList(
+  params: {
+  },
+  options?: { [key: string]: any },
+) {
+
+  return request<AdjustAssetListVO>('/api/admin/asset/adjust/list', {
+    method: 'POST',
+    data: {
+      'token':localStorage.getItem("token"),
+      'tenant_id':0,
+      'user_id':0,
+      ...params,
+    },
+    ...(options || { }),
+  });
+}
+
+
+/** 审核*/
+export async function adjustAssetAudit(
+  params: {
+    id:string,
+    is_pass:boolean
+  },
+  options?: { [key: string]: any },
+) {
+
+  console.log(params)
+
+  let status=2;
+  if (params.is_pass){
+    status=1;
+  }
+
+  return request<AdjustAssetListVO>('/api/admin/asset/adjust/audit', {
+    method: 'POST',
+    data: {
+      'token':localStorage.getItem("token"),
+      'tenant_id':0,
+
+      'adjust_asset_id':params.id,
+      'opt_user_id':0,
+      'status':status,
+
+      'remark':'审核'
+    },
+    ...(options || { }),
+  });
+}
+
+
+/** 执行调账*/
+export async function adjustAssetExecuted(
+  params: {
+    id:string,
+    system_user_id:string
+  },
+  options?: { [key: string]: any },
+) {
+
+  console.log(params)
+
+  return request<AdjustAssetListVO>('/api/admin/asset/adjust/executed', {
+    method: 'POST',
+    data: {
+      'token':localStorage.getItem("token"),
+      'tenant_id':0,
+
+      'adjust_asset_id':params.id,
+      'opt_user_id':0,
+      'system_user_id':params.system_user_id,
+
+      'remark':'执行调账'
     },
     ...(options || { }),
   });
