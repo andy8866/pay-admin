@@ -44,6 +44,11 @@ export default [
     component: './DepositList',
   },
   {
+    name: '提款列表',
+    path: '/withdrawList',
+    component: './WithdrawList',
+  },
+  {
     path: '/',
     redirect: '/welcome',
   },

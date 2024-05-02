@@ -93,6 +93,36 @@ export type DepositOrderListVO = {
   data?: DepositOrderVO[];
 };
 
+
+export type WithdrawOrderListVO = {
+  status?: number;
+  msg?: string;
+  data?: WithdrawOrderVO[];
+};
+
+
+export type WithdrawOrderVO = {
+  id?: string;
+  tenant_id?: string;
+  updated_at?: string;
+  created_at?: string;
+  order_no?: string;
+  status?: number;
+  user_id?: string;
+  coin_type?: number;
+  coin_amount?: number;
+  legal_amount?: number;
+  coin_to_legal_rate?: number;
+  real_name?: string;
+  card_no?: string;
+  depositary_bank?: string;
+  audit_time?: string;
+  pay_time?: string;
+  bank_sn?: string;
+  take_freeze_time?: string;
+};
+
+
 export type FakeCaptcha = {
   code?: number;
   status?: string;

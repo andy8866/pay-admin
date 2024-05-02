@@ -141,3 +141,77 @@ export async function depositPuttingCoin(
     ...(options || { }),
   });
 }
+
+
+/** 获取列表*/
+export async function getWithdrawList(
+  params: {
+  },
+  options?: { [key: string]: any },
+) {
+
+  return request<DepositOrderListVO>('/api/admin/withdraw/list', {
+    method: 'POST',
+    data: {
+      'token':localStorage.getItem("token"),
+      'tenant_id':0,
+      'user_id':0,
+      ...params,
+    },
+    ...(options || { }),
+  });
+}
+
+/** 提款审核*/
+export async function withdrawAudit(
+  params: {
+    id:string,
+    is_pass:boolean
+  },
+  options?: { [key: string]: any },
+) {
+
+  console.log(params)
+
+  return request<DepositOrderListVO>('/api/admin/withdraw/audit', {
+    method: 'POST',
+    data: {
+      'token':localStorage.getItem("token"),
+      'tenant_id':0,
+
+      'order_id':params.id,
+      'opt_user_id':0,
+      'is_pass':params.is_pass,
+
+      'remark':'审核'
+    },
+    ...(options || { }),
+  });
+}
+
+
+/** 提款已付款*/
+export async function withdrawAlreadPay(
+  params: {
+    id:string,
+    bank_sn:string
+  },
+  options?: { [key: string]: any },
+) {
+
+  console.log(params)
+
+  return request<DepositOrderListVO>('/api/admin/withdraw/already_pay', {
+    method: 'POST',
+    data: {
+      'token':localStorage.getItem("token"),
+      'tenant_id':0,
+
+      'order_id':params.id,
+      'bank_sn':"123",
+
+      'remark':'已付款'
+    },
+    ...(options || { }),
+  });
+}
