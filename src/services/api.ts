@@ -304,3 +304,35 @@ export async function adjustAssetExecuted(
     ...(options || { }),
   });
 }
+
+
+/** 执行调账*/
+export async function adjustAssetApply(
+  params: {
+    to_user_id:string,
+    asset_trans_type:number,
+    coin_type:number,
+    amount:number,
+  },
+  options?: { [key: string]: any },
+) {
+
+  console.log(params)
+
+  return request<AdjustAssetListVO>('/api/admin/asset/adjust/apply', {
+    method: 'POST',
+    data: {
+      'token':localStorage.getItem("token"),
+      'tenant_id':0,
+      'user_id':0,
+
+      'to_user_id':params.to_user_id,
+      'asset_trans_type':params.asset_trans_type,
+      'coin_type':params.coin_type,
+      'amount':params.amount,
+
+      'remark':' 调账'
+    },
+    ...(options || { }),
+  });
+}

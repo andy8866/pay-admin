@@ -3,7 +3,7 @@ import type {ActionType, ProColumns} from '@ant-design/pro-components';
 import {PageContainer, ProTable,} from '@ant-design/pro-components';
 import React, {useRef, useState} from 'react';
 import {COIN_CNY, coin_precision, get_coin_str, rate_precision} from "@/coin";
-import {Modal} from "antd";
+import {Button, Modal} from "antd";
 import {DepositOrderVO, PageParamsVO, WithdrawOrderVO} from "@/services/typings";
 
 
@@ -162,6 +162,7 @@ const WithdrawList: React.FC = () => {
   return (
     <div>
       <PageContainer>
+
         <ProTable<DepositOrderVO, PageParamsVO>
           headerTitle='提款列表'
           actionRef={actionRef}
