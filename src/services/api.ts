@@ -7,7 +7,7 @@ import {
   AssetListVO,
   DepositOrderListVO,
   LoginParamsVO,
-  LoginResultVO
+  LoginResultVO, TransferListVO, TransferVO
 } from "@/services/typings";
 
 
@@ -332,6 +332,27 @@ export async function adjustAssetApply(
       'amount':params.amount,
 
       'remark':' 调账'
+    },
+    ...(options || { }),
+  });
+}
+
+
+
+/** list*/
+export async function getTransferVOList(
+  params: {
+  },
+  options?: { [key: string]: any },
+) {
+
+  return request<TransferListVO>('/api/admin/transfer/list', {
+    method: 'POST',
+    data: {
+      'token':localStorage.getItem("token"),
+      'tenant_id':0,
+      'user_id':0,
+      ...params,
     },
     ...(options || { }),
   });

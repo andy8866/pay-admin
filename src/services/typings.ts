@@ -147,6 +147,26 @@ export type AdjustAssetVO = {
   from_user_id?: string;
 };
 
+export type TransferListVO = {
+  status?: number;
+  msg?: string;
+  data?: TransferVO[];
+};
+
+
+export type TransferVO = {
+  id?: string;
+  tenant_id?: string;
+  updated_at?: string;
+  created_at?: string;
+  from_user_id?: string;
+  from_address?: string;
+  to_user_id?: number;
+  to_address?: string;
+  coin_type?: number;
+  amount?: number;
+};
+
 export type LoginParamsVO = {
   tenant_id?: number;
   name?: string;

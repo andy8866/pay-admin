@@ -1,9 +1,9 @@
-import {adjustAssetApply, adjustAssetAudit, adjustAssetExecuted, getAdjustAssetList, login} from '@/services/api';
+import {adjustAssetApply, adjustAssetAudit, adjustAssetExecuted, getAdjustAssetList} from '@/services/api';
 import type {ActionType, ProColumns} from '@ant-design/pro-components';
 import {PageContainer, ProTable,} from '@ant-design/pro-components';
 import React, {useRef, useState} from 'react';
 import {COIN_B, COIN_B_STR, coin_precision, get_coin_str} from "@/coin";
-import {Button, Checkbox, Form, Input, InputNumber, message, Modal, Select} from "antd";
+import {Button, Form, Input, InputNumber, message, Modal, Select} from "antd";
 import {AdjustAssetVO, PageParamsVO} from "@/services/typings";
 import {get_asset_trans_type_str} from "@/comm";
 import {FormProps} from "antd/lib";
@@ -49,7 +49,7 @@ const AdjustAssetList: React.FC = () => {
     setIsPass(isPass);
 
     setOpen(true);
-  };
+  }
 
   const columns: ProColumns<AdjustAssetVO>[] = [
     {
@@ -157,11 +157,12 @@ const AdjustAssetList: React.FC = () => {
     values.asset_trans_type=assetTransType;
     values.coin_type=coinType;
 
+    // @ts-ignore
     const r = await adjustAssetApply(values);
     if (r.status === 0) {
       message.success("已发起调账");
       setApplyOpen(false)
-      
+
       setTimeout(()=>{
         // @ts-ignore
         actionRef.current.reload();
