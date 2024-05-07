@@ -31,7 +31,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
     onPageChange: () => {
       const { location } = history;
       // 如果没有登录，重定向到 login
-      if (!localStorage.getItem("token") && location.pathname !== loginPath) {
+      if (!localStorage.getItem("adminToken") && location.pathname !== loginPath) {
         history.push(loginPath);
       }
     },

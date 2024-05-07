@@ -60,7 +60,8 @@ const Login: React.FC = () => {
       if (r.status === 0) {
         message.success("登录成功");
 
-        localStorage.setItem("token", r.data);
+        localStorage.setItem("adminToken", r.data);
+
 
         history.push('/');
         return;

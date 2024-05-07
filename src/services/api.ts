@@ -42,7 +42,7 @@ export async function getAppUserList(
   return request<AppUserListVO>('/api/admin/app_user/list', {
     method: 'POST',
     data: {
-      'token':localStorage.getItem("token"),
+      'token':localStorage.getItem("adminToken"),
       'tenant_id':0,
       'user_id':0,
       ...params,
@@ -68,7 +68,7 @@ export async function getAssetList(
   return request<AssetListVO>('/api/admin/asset/list', {
     method: 'POST',
     data: {
-      'token':localStorage.getItem("token"),
+      'token':localStorage.getItem("adminToken"),
       'tenant_id':0,
       'user_id':0,
       'search_user_id':search_user_id
@@ -93,7 +93,7 @@ export async function getDepositList(
   return request<DepositOrderListVO>('/api/admin/deposit/list', {
     method: 'POST',
     data: {
-      'token':localStorage.getItem("token"),
+      'token':localStorage.getItem("adminToken"),
       'tenant_id':0,
       'user_id':0,
       ...params,
@@ -115,7 +115,7 @@ export async function depositReceivedAudit(
   return request<DepositOrderListVO>('/api/admin/deposit/received_audit', {
     method: 'POST',
     data: {
-      'token':localStorage.getItem("token"),
+      'token':localStorage.getItem("adminToken"),
       'tenant_id':0,
       'user_id':0,
       'order_id':params.id,
@@ -138,7 +138,7 @@ export async function depositPuttingCoin(
   return request<DepositOrderListVO>('/api/admin/deposit/putting_coin', {
     method: 'POST',
     data: {
-      'token':localStorage.getItem("token"),
+      'token':localStorage.getItem("adminToken"),
       'tenant_id':0,
       'user_id':0,
       'order_id':params.id,
@@ -160,7 +160,7 @@ export async function getWithdrawList(
   return request<DepositOrderListVO>('/api/admin/withdraw/list', {
     method: 'POST',
     data: {
-      'token':localStorage.getItem("token"),
+      'token':localStorage.getItem("adminToken"),
       'tenant_id':0,
       'user_id':0,
       ...params,
@@ -183,7 +183,7 @@ export async function withdrawAudit(
   return request<DepositOrderListVO>('/api/admin/withdraw/audit', {
     method: 'POST',
     data: {
-      'token':localStorage.getItem("token"),
+      'token':localStorage.getItem("adminToken"),
       'tenant_id':0,
 
       'order_id':params.id,
@@ -213,7 +213,7 @@ export async function withdrawAlreadPay(
   return request<DepositOrderListVO>('/api/admin/withdraw/already_pay', {
     method: 'POST',
     data: {
-      'token':localStorage.getItem("token"),
+      'token':localStorage.getItem("adminToken"),
       'tenant_id':0,
 
       'order_id':params.id,
@@ -235,7 +235,7 @@ export async function getAdjustAssetList(
   return request<AdjustAssetListVO>('/api/admin/asset/adjust/list', {
     method: 'POST',
     data: {
-      'token':localStorage.getItem("token"),
+      'token':localStorage.getItem("adminToken"),
       'tenant_id':0,
       'user_id':0,
       ...params,
@@ -264,7 +264,7 @@ export async function adjustAssetAudit(
   return request<AdjustAssetListVO>('/api/admin/asset/adjust/audit', {
     method: 'POST',
     data: {
-      'token':localStorage.getItem("token"),
+      'token':localStorage.getItem("adminToken"),
       'tenant_id':0,
 
       'adjust_asset_id':params.id,
@@ -292,7 +292,7 @@ export async function adjustAssetExecuted(
   return request<AdjustAssetListVO>('/api/admin/asset/adjust/executed', {
     method: 'POST',
     data: {
-      'token':localStorage.getItem("token"),
+      'token':localStorage.getItem("adminToken"),
       'tenant_id':0,
 
       'adjust_asset_id':params.id,
@@ -322,7 +322,7 @@ export async function adjustAssetApply(
   return request<AdjustAssetListVO>('/api/admin/asset/adjust/apply', {
     method: 'POST',
     data: {
-      'token':localStorage.getItem("token"),
+      'token':localStorage.getItem("adminToken"),
       'tenant_id':0,
       'user_id':0,
 
@@ -349,7 +349,7 @@ export async function getTransferVOList(
   return request<TransferListVO>('/api/admin/transfer/list', {
     method: 'POST',
     data: {
-      'token':localStorage.getItem("token"),
+      'token':localStorage.getItem("adminToken"),
       'tenant_id':0,
       'user_id':0,
       ...params,
